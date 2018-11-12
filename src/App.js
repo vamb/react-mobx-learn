@@ -6,6 +6,8 @@ import { action, observable, autorun, computed } from 'mobx';
 import TimerDataStore from "./TimerDataStore";
 import { observer } from "mobx-react";
 import './App.css';
+import TimerView from './Component/TimerViewer';
+import Store from './Component/Store';
 
 let person = observable({
     name: "John",
@@ -106,6 +108,8 @@ class App extends Component {
                 {person.name}&&&{person.age}<br/><br/>
                 <Button type="primary" onClick={this.onClickAction2}>Btn 2</Button><br/><br/>
                 <div><TimerData /></div>
+
+                <div><TimerView /></div>
             </div>
         );
     }
