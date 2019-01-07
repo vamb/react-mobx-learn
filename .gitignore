@@ -3,9 +3,9 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
+*.idea
 *.iml
 *.lock
-mode_modules
 out
 gen
+/node_modules/
