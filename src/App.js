@@ -1,42 +1,15 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import { Button } from 'antd';
 import logo from './logo.svg';
 import { action, observable, autorun, computed } from 'mobx';
 import TimerDataStore from "./TimerDataStore";
 import { observer } from "mobx-react";
 import './App.css';
 import TimerView from './Component/TimerViewer';
-import Store from './Component/Store';
-
-let person = observable({
-    name: "John",
-    age: 42,
-    showAge: false,
-//
-    get labelText() {
-        let showName = `${this.name}`;
-        let showAge = `${this.age}`;
-        return this.showAge ? `${this.name} (age: ${this.age})`: this.name
-    },
-    setAge(age) {
-        this.age = age;
-    },
-    setName(name) {
-        this.name = name;
-    },
-    setShowAge(flag){
-        this.showAge = flag;
-    }
-},{
-    setAge: action,
-    setName: action,
-    setShowAge: action
-});
-
-let tempAge = 0;
-
-
+import ReactCountryFlag from "react-country-flag";
+import TestConst from './TestConst/TestConst'
+import CountryFlagLocal from './LocalCountryFlags/index'
+import TodoView from './TODOStore/TodoView'
+import 'antd/dist/antd.css';
 
 const TimerData = observer(() =>{
     const store = TimerDataStore;
@@ -44,30 +17,18 @@ const TimerData = observer(() =>{
         <div>
             <div><label>{store.store.secondsPassed}</label></div>
             <div>
-                <Button onClick={()=>{
+                <div onClick={()=>{
                     console.log('TimerData click');
                     store.doAction();
                 }}>
                     TimerData Btn
-                </Button>
+                </div>
             </div>
         </div>
     );
 });
 
 class App extends Component {
-
-    onClickAction = () =>{
-        person.setAge(55);
-        if(person.name === "Peter"){
-            person.setName('John')
-        }else{
-            person.setName('Peter');
-        }
-        person.showAge = true;
-        console.log('Jump Action')
-        console.log(person.labelText)
-    };
 
     onClickAction2 = () =>{
         let numbers = observable([1,2,3]);;
@@ -79,17 +40,8 @@ class App extends Component {
         numbers.push(5);
         // disposer();
     }
-
-    changePersonName = action((newName) =>{
-        console.log("changePersonName", newName)
-        person.name = newName;
-        person.age = tempAge;
-        tempAge ++;
-        console.log(person)
-    });
-
-
     render() {
+        // console.log('TestConst: ', TestConst)
         return (
             <div className="App">
                 <header className="App-header">
@@ -99,17 +51,29 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                {/*<Link path={"www.google.com"}>*/}
-                <Button type="primary" onClick={()=>this.onClickAction} >Btn 1</Button><br/><br/>
-                <Button type="primary" onClick={()=>this.changePersonName("John")}>Btn Change to John</Button><br/><br/>
-                <Button type="primary" onClick={()=>this.changePersonName("Peter")}>Btn Change to Peter</Button><br/><br/>
-                {/*</Link>*/}
-                {person.labelText}<br/><br/>
-                {person.name}&&&{person.age}<br/><br/>
-                <Button type="primary" onClick={this.onClickAction2}>Btn 2</Button><br/><br/>
+                <div type="primary" onClick={this.onClickAction2}>Btn 2</div><br/><br/>
+                <div>==================================</div>
                 <div><TimerData /></div>
-
+                <div>===================================</div>
                 <div><TimerView /></div>
+                <div>===================================</div>
+                <div>=============world flag============</div>
+                {/*{*/}
+                    {/*TestConst.tempArray.map(item=>{*/}
+                        {/*return(*/}
+                            {/*<div key={item.countryName}>*/}
+                                {/*<span>{item.nationality}{'/'}{item.countryName}/{item.country3Code}</span><br/>*/}
+                                {/*/!*<ReactCountryFlag code={item.country2Code} svg />1<br />*!/*/}
+                                {/*/!*<WorldFlagLocal code={item.country3Code} />2<br/>*!/*/}
+                                {/*<CountryFlagLocal code={item.country3Code} />3*/}
+                            {/*</div>*/}
+                        {/*)*/}
+                    {/*})*/}
+                {/*}*/}
+                <CountryFlagLocal code="SAU" />
+                <div>============= TodoView start ======================</div>
+                <div><TodoView /></div>
+                <div>============= TodoView end ======================</div>
             </div>
         );
     }

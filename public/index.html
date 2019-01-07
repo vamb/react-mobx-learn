@@ -19,6 +19,20 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+      <script>
+	      if (!String.fromCodePoint) {
+		      String.fromCodePoint = function () {
+			      var chars = [], point, offset, units, i;
+			      for (i = 0; i < arguments.length; ++i) {
+				      point = arguments[i];
+				      offset = point - 0x10000;
+				      units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+				      chars.push(String.fromCharCode.apply(null, units));
+			      }
+			      return chars.join("");
+		      };
+	      }
+      </script>
     <title>React App</title>
   </head>
   <body>

@@ -1,5 +1,3 @@
-import { observer } from "mobx-react";
-import React, { Component } from 'react';
 import { observable, action } from 'mobx';
 
 const TimerDataStore = {};
@@ -13,4 +11,4 @@ TimerDataStore.doAction = action(()=>{
     TimerDataStore.store.secondsPassed = parseInt(TimerDataStore.store.secondsPassed) + 1;
 });
 
-export default TimerDataStore;
+export default TimerDataStore
