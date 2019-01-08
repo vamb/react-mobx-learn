@@ -75,7 +75,8 @@ const TodoView = observer(() =>{
                                                         style={{cursor: 'pointer'}}
                                                     >Processing</span>{' / '}
                                                     <span
-
+                                                        onClick={()=>Store.deleteTask(task.taskName)}
+                                                        style={{cursor: 'pointer'}}
                                                     >Delete</span>
                                                 </span>
                                             }
@@ -85,7 +86,11 @@ const TodoView = observer(() =>{
                                                     <span
                                                         onClick={()=>Store.updateTaskStatus(task.taskName, Config.STATUS.DONE)}
                                                         style={{cursor: 'pointer'}}
-                                                    >Done</span>{' / '}<span>Delete</span>
+                                                    >Done</span>{' / '}
+                                                    <span
+                                                        onClick={()=>Store.deleteTask(task.taskName)}
+                                                        style={{cursor: 'pointer'}}
+                                                    >Delete</span>
                                                 </span>
                                             }
                                             {
@@ -94,7 +99,11 @@ const TodoView = observer(() =>{
                                                     <span
                                                         onClick={()=>Store.updateTaskStatus(task.taskName, Config.STATUS.PENDING)}
                                                         style={{cursor: 'pointer'}}
-                                                    >Reopen</span>{' / '}<span>Delete</span>
+                                                    >Reopen</span>{' / '}
+                                                    <span
+                                                        onClick={()=>Store.deleteTask(task.taskName)}
+                                                        style={{cursor: 'pointer'}}
+                                                    >Delete</span>
                                                 </span>
                                             }
                                         </td>

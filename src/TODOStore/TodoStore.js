@@ -73,7 +73,7 @@ Store.updateTaskStatus = action((taskName, status)=>{
 Store.deleteTask = action(taskName=>{
     if(!(!Store.store.workList) && Store.store.workList.length>0){
         const filterResult = Store.store.workList.filter(task=> task.taskName === taskName)[0]
-        filterResult.status = status;
+        Store.store.workList.remove(filterResult)
         Store.updateStatus();
     }else{
         notification.error({message: Config.MESSAGE.NO_TASK_DATA})
