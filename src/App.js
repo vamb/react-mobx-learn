@@ -10,6 +10,7 @@ import TestConst from './TestConst/TestConst'
 import CountryFlagLocal from './LocalCountryFlags/index'
 import TodoView from './TODOStore/TodoView'
 import 'antd/dist/antd.css';
+import CountDemo from './CountLearn';
 
 const TimerData = observer(() =>{
     const store = TimerDataStore;
@@ -74,6 +75,7 @@ class App extends Component {
                 <div>============= TodoView start ======================</div>
                 <div><TodoView /></div>
                 <div>============= TodoView end ======================</div>
+                <CountDemo />
             </div>
         );
     }
